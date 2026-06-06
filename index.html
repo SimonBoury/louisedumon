@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Louise Dumon — Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;700;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0f0e0c;
+  --off:#f0ebe0;
+  --accent:#b8860b;
+  --accent-light:#d4a017;
+  --accent-pale:#f5e6b0;
+  --blue:#b8860b;
+  --sand:#e8c99a;
+  --ink:#1a1816;
+  --mid:#7a736b;
+  --line:#cfc8bc;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--off);
+  color:var(--ink);
+  font-family:'Space Mono',monospace;
+  font-size:13px;
+  line-height:1.5;
+  cursor:crosshair;
+}
+
+body::before{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 2rem;background:var(--off);
+  border-bottom:1px solid var(--line);
+}
+.nav-logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:1.4rem;
+  letter-spacing:0.05em;text-decoration:none;
+  color:var(--black);text-transform:uppercase;
+}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  text-decoration:none;color:var(--mid);
+  font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--accent);}
+
+/* HERO */
+.hero{
+  min-height:100vh;padding-top:56px;
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--line);
+}
+.hero-left{
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:3rem 2.5rem;position:relative;overflow:hidden;
+}
+/* ghost letters — riso misregistratie */
+.hero-left::before{
+  content:'DUMON';
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(5rem,16vw,14rem);line-height:0.85;
+  color:var(--accent);opacity:0.07;
+  position:absolute;top:80px;left:-0.03em;
+  letter-spacing:-0.02em;pointer-events:none;
+}
+.hero-tag{
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.5rem;
+  border-left:2px solid var(--accent);padding-left:0.8rem;
+}
+.hero-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(4.5rem,11vw,10rem);
+  line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase;
+}
+/* Louise = solid zwart */
+.hero-title .name-first{color:var(--black);display:block;}
+/* Dumon = outline */
+.hero-title .name-last{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:2px var(--black);
+}
+.hero-sub{
+  margin-top:2.5rem;font-size:0.75rem;
+  color:var(--mid);max-width:34ch;line-height:1.8;
+  border-top:1px solid var(--line);padding-top:1.2rem;
+}
+.hero-right{position:relative;overflow:hidden;background:#c4bfb6;}
+.hero-right img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  display:block;filter:grayscale(20%) contrast(1.08);mix-blend-mode:multiply;
+}
+.hero-right::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(140deg,rgba(184,134,11,0.22) 0%,rgba(184,134,11,0.15) 100%);
+  mix-blend-mode:multiply;pointer-events:none;
+}
+.hero-number{
+  position:absolute;bottom:1.5rem;right:1.5rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:8rem;
+  color:var(--off);opacity:0.14;line-height:1;pointer-events:none;
+}
+
+/* TICKER */
+.ticker{
+  background:var(--accent);color:var(--off);
+  padding:0.55rem 0;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.95rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--line);
+}
+.ticker-inner{display:inline-block;animation:ticker 22s linear infinite;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION HEADER */
+.section-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  border-bottom:1px solid var(--line);padding:0.9rem 2rem;
+}
+.section-num{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);}
+.section-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.9rem;letter-spacing:-0.01em;text-transform:uppercase;
+}
+
+/* FILTER */
+.filter-row{display:flex;border-bottom:1px solid var(--line);}
+.filter-btn{
+  background:none;border:none;border-right:1px solid var(--line);
+  padding:0.65rem 1.4rem;
+  font-family:'Space Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);cursor:crosshair;
+  transition:background 0.15s,color 0.15s;
+}
+.filter-btn:last-child{border-right:none;}
+.filter-btn.active,.filter-btn:hover{background:var(--ink);color:var(--off);}
+
+/* WORKS GRID */
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+.work-card{
+  position:relative;overflow:hidden;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  aspect-ratio:3/4;background:#bfbab0;cursor:crosshair;
+}
+.work-card:nth-child(3n){border-right:none;}
+.work-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(30%) contrast(1.12) saturate(0.85);
+  transition:transform 0.5s ease;
+}
+.work-card::before{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+}
+.work-card:nth-child(3n+1)::before{background:rgba(184,134,11,0.22);mix-blend-mode:multiply;}
+.work-card:nth-child(3n+2)::before{background:rgba(184,134,11,0.22);mix-blend-mode:multiply;}
+.work-card:nth-child(3n+3)::before{background:rgba(232,201,154,0.28);mix-blend-mode:multiply;}
+.work-card:hover img{transform:scale(1.05);}
+.work-card::after{
+  content:attr(data-title);
+  position:absolute;top:0.8rem;left:calc(0.8rem + 2px);z-index:2;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent-light);opacity:0.7;pointer-events:none;
+}
+.card-info{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  background:var(--ink);padding:1rem 1.2rem;
+  transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.work-card:hover .card-info{transform:translateY(0);}
+.card-name{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.15rem;
+  color:var(--off);text-transform:uppercase;letter-spacing:0.03em;
+}
+.card-meta{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-light);margin:0.2rem 0 0.7rem;}
+.btn-koop{
+  background:var(--accent);border:none;color:var(--off);padding:0.45rem 1rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;
+  letter-spacing:0.1em;text-transform:uppercase;cursor:crosshair;transition:background 0.15s;
+}
+.btn-koop:hover{background:var(--accent-light);}
+
+/* ABOUT */
+#over{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.about-img-wrap{
+  border-right:1px solid var(--line);
+  position:relative;overflow:hidden;min-height:520px;background:#bab4aa;
+}
+.about-img-wrap img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  filter:grayscale(30%) contrast(1.08);mix-blend-mode:multiply;
+}
+.about-img-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(184,134,11,0.2);mix-blend-mode:multiply;pointer-events:none;
+}
+.about-text{padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center;}
+.about-label{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+.about-quote{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.05;text-transform:uppercase;
+  color:var(--black);margin-bottom:2rem;
+}
+.about-quote em{font-style:normal;-webkit-text-stroke:1.5px var(--black);color:transparent;}
+.about-body{
+  font-size:0.78rem;color:var(--mid);line-height:1.9;max-width:42ch;
+  border-left:2px solid var(--line);padding-left:1rem;
+}
+.about-body p+p{margin-top:1em;}
+
+/* CONTACT */
+#contact{
+  background:var(--ink);color:var(--off);
+  padding:5rem 2.5rem;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--accent);
+}
+#contact::before{
+  content:'KOOP';font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:22vw;color:var(--off);opacity:0.025;
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  white-space:nowrap;pointer-events:none;letter-spacing:-0.03em;
+}
+.contact-inner{position:relative;z-index:1;max-width:580px;}
+.contact-tag{
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-light);
+  margin-bottom:1.5rem;display:inline-block;border:1px solid var(--accent);padding:0.2rem 0.55rem;
+}
+.contact-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(3rem,7vw,6rem);line-height:0.9;text-transform:uppercase;
+  margin-bottom:2rem;color:var(--off);
+}
+.contact-title span{display:block;color:var(--accent-light);}
+.contact-body{font-size:0.78rem;color:#7a736b;line-height:1.9;max-width:40ch;margin-bottom:3rem;}
+.btn-big{
+  display:inline-block;background:var(--accent);color:var(--off);text-decoration:none;
+  padding:0.9rem 2.2rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  border:1px solid var(--accent);transition:background 0.15s,color 0.15s;cursor:crosshair;
+}
+.btn-big:hover{background:transparent;color:var(--accent-light);}
+.contact-side{
+  position:absolute;right:2.5rem;bottom:3rem;z-index:1;
+  font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:#4a4540;line-height:2.2;text-align:right;
+}
+.contact-side a{color:var(--accent-light);text-decoration:none;}
+.contact-side a:hover{color:var(--off);}
+
+/* FOOTER */
+footer{
+  background:var(--ink);color:#3a3530;
+  padding:1.1rem 2rem;display:flex;justify-content:space-between;align-items:center;
+  font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;
+  border-top:1px solid #221f1c;
+}
+
+/* MODAL */
+.modal-backdrop{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(15,14,12,0.82);display:none;
+  align-items:center;justify-content:center;
+}
+.modal-backdrop.open{display:flex;}
+.modal{background:var(--off);max-width:460px;width:90%;border:1px solid var(--line);position:relative;}
+.modal-top{
+  background:var(--ink);color:var(--off);
+  padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;
+}
+.modal-top-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;text-transform:uppercase;}
+.modal-close{background:none;border:none;color:var(--off);font-size:1.1rem;cursor:crosshair;font-family:'Space Mono',monospace;}
+.modal-body{padding:1.6rem 1.4rem;}
+.modal-work-label{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem;}
+.modal-work-name{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;
+  text-transform:uppercase;color:var(--black);margin-bottom:1.3rem;
+  border-bottom:1px solid var(--line);padding-bottom:0.9rem;
+}
+.modal-text{font-size:0.76rem;color:var(--mid);line-height:1.8;margin-bottom:1.8rem;}
+.modal-cta{
+  display:inline-block;background:var(--ink);color:var(--off);text-decoration:none;
+  padding:0.75rem 1.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.9rem;letter-spacing:0.12em;text-transform:uppercase;transition:background 0.15s;cursor:crosshair;
+}
+.modal-cta:hover{background:var(--accent);}
+
+@media(max-width:768px){
+  nav{padding:0.8rem 1rem;}
+  .hero{grid-template-columns:1fr;}
+  .hero-left{padding:2rem 1.2rem;min-height:55vw;}
+  .hero-right{min-height:60vw;}
+  .works-grid{grid-template-columns:1fr 1fr;}
+  .work-card:nth-child(3n){border-right:1px solid var(--line);}
+  .work-card:nth-child(2n){border-right:none;}
+  #over{grid-template-columns:1fr;}
+  .about-img-wrap{min-height:70vw;}
+  #contact{padding:3rem 1.2rem;}
+  .contact-side{position:static;text-align:left;margin-top:2rem;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Louise Dumon</a>
+  <ul class="nav-links">
+    <li><a href="#werken">Werken</a></li>
+    <li><a href="#over">Over</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Keramiek · Schilderkunst · Illustratie</p>
+    <h1 class="hero-title">
+      <span class="name-last">Dumon</span>
+      <span class="name-first">Louise</span>
+    </h1>
+    <p class="hero-sub">Handgemaakt werk in klei, verf en inkt — ruw, direct, met de vingerafdruk van het maken zichtbaar in elk stuk.</p>
+  </div>
+  <div class="hero-right">
+    <img src="images/hero/hero.jpg" alt="Keramiek studio"/>
+    <div class="hero-number">01</div>
+  </div>
+</div>
+
+<div class="ticker">
+  <span class="ticker-inner">Keramiek&nbsp;&nbsp;·&nbsp;&nbsp;Schilderkunst&nbsp;&nbsp;·&nbsp;&nbsp;Illustratie&nbsp;&nbsp;·&nbsp;&nbsp;Handgemaakt&nbsp;&nbsp;·&nbsp;&nbsp;Keramiek&nbsp;&nbsp;·&nbsp;&nbsp;Schilderkunst&nbsp;&nbsp;·&nbsp;&nbsp;Illustratie&nbsp;&nbsp;·&nbsp;&nbsp;Handgemaakt&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+</div>
+
+<div id="werken">
+  <div class="section-header">
+    <span class="section-num">// 02</span>
+    <span class="section-title">Werken</span>
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">Alles</button>
+    <button class="filter-btn" data-filter="keramiek">Keramiek</button>
+    <button class="filter-btn" data-filter="schilderij">Schilderij</button>
+    <button class="filter-btn" data-filter="illustratie">Illustratie</button>
+  </div>
+  <div class="works-grid" id="worksGrid"></div>
+</div>
+
+<div id="over">
+  <div class="about-img-wrap">
+    <img src="images/louise.jpg" alt="Louise Dumon"/>
+  </div>
+  <div class="about-text">
+    <p class="about-label">// 03 — Over de kunstenares</p>
+    <h2 class="about-quote">Materie<br>die <em>weerstand</em><br>biedt</h2>
+    <div class="about-body">
+      <p>Louise Dumon werkt met keramiek, schilderkunst en illustratie — disciplines die ze niet als apart ziet maar als één handschrift in verschillende materialen.</p>
+      <p>Haar werk is niet zacht of decoratief. Het draagt littekens van het proces: barsten, vlekken, ongelijke glazuren. Ze zoekt naar objecten die een gesprek aangaan met wie ze vasthoudt.</p>
+      <p>Beschikbaar voor aankoop via directe communicatie. Geen platform, geen algoritme.</p>
+    </div>
+  </div>
+</div>
+
+<div id="contact">
+  <div class="contact-inner">
+    <span class="contact-tag">// 04 — Aankoop</span>
+    <h2 class="contact-title">Interesse?<br><span>Schrijf.</span></h2>
+    <p class="contact-body">Stuur een mail met de titel van het werk. Ik antwoord met informatie over prijs, beschikbaarheid en verzending.</p>
+    <a class="btn-big" href="mailto:louise@louisedumon.be?subject=Interesse%20in%20een%20werk">Een werk aanvragen →</a>
+  </div>
+  <div class="contact-side">
+    <a href="mailto:louise@louisedumon.be">louise@louisedumon.be</a><br>
+    <a href="#">@louisedumon.studio</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Louise Dumon</span>
+  <span>Gebouwd voor GitHub Pages</span>
+</footer>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-top">
+      <span class="modal-top-title">Werk aanvragen</span>
+      <button class="modal-close" id="modalClose">[ × ]</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-work-label" id="modalCat">Keramiek · 2024</p>
+      <p class="modal-work-name" id="modalName">Werk</p>
+      <p class="modal-text">Klik hieronder om een mail te openen. De werktitel staat al ingevuld — voeg je naam en eventuele vragen toe.</p>
+      <a class="modal-cta" id="modalLink" href="#">Mail sturen →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const works=[
+  {title:'Pot I',cat:'keramiek',year:'2025',img:'https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=600&q=80'},
+  {title:'Vlak III',cat:'schilderij',year:'2025',img:'https://images.unsplash.com/photo-1578301978018-3005759f48f7?w=600&q=80'},
+  {title:'Vaas Zwart',cat:'keramiek',year:'2024',img:'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80'},
+  {title:'Studie II',cat:'illustratie',year:'2025',img:'https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=600&q=80'},
+  {title:'Kom Ruw',cat:'keramiek',year:'2024',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'},
+  {title:'Aarde & Rook',cat:'schilderij',year:'2024',img:'https://images.unsplash.com/photo-1606722590583-6951b5ea92ad?w=600&q=80'},
+  {title:'Kruik',cat:'keramiek',year:'2025',img:'https://images.unsplash.com/photo-14903

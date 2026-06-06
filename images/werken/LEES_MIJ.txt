@@ -1,0 +1,10 @@
+Plaats hier de foto's van je werken.
+
+Bestandsnamen moeten overeenkomen met wat in index.html staat, bv:
+  kom-i.jpg
+  kruik.jpg
+  vlak-iii.jpg
+  ...
+
+Aanbevolen: staand formaat (portret), minimaal 800px breed.
+Comprimeer via https://squoosh.app voor snelle laadtijd.

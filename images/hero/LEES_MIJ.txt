@@ -1,0 +1,4 @@
+Plaats hier je hero-foto met de naam: hero.jpg
+
+Aanbevolen: liggend formaat (landschap), minimaal 1200px breed.
+Comprimeer via https://squoosh.app voor snelle laadtijd.
