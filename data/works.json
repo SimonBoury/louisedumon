@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Pot I",
+    "category": "keramiek",
+    "year": "2025",
+    "image": "https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=800&q=80",
+    "price": "€ 220",
+    "description": "Gedraaide pot in roodbakkende klei, deels ongeglazuurd. De rand draagt de sporen van de hand die hem vormde."
+  },
+  {
+    "title": "Vlak III",
+    "category": "schilderij",
+    "year": "2025",
+    "image": "https://images.unsplash.com/photo-1578301978018-3005759f48f7?w=800&q=80",
+    "price": "€ 480",
+    "description": "Olieverf op linnen. Aarde- en oxidetinten in dikke, onafgewerkte lagen."
+  },
+  {
+    "title": "Vaas Zwart",
+    "category": "keramiek",
+    "year": "2024",
+    "image": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
+    "price": "€ 260",
+    "description": "Rookgestookte vaas met mat zwart oppervlak. Elk exemplaar is uniek door het stookproces."
+  },
+  {
+    "title": "Studie II",
+    "category": "illustratie",
+    "year": "2025",
+    "image": "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=800&q=80",
+    "price": "€ 140",
+    "description": "Inkt op papier, ongekaderd. Snelle lijnstudie uit een reeks van twaalf."
+  },
+  {
+    "title": "Kom Ruw",
+    "category": "keramiek",
+    "year": "2024",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    "price": "€ 95",
+    "description": "Met de hand opgebouwde kom, dik glazuur dat over de ruwe rand loopt."
+  },
+  {
+    "title": "Aarde & Rook",
+    "category": "schilderij",
+    "year": "2024",
+    "image": "https://images.unsplash.com/photo-1606722590583-6951b5ea92ad?w=800&q=80",
+    "price": "€ 540",
+    "description": "Acryl en as op hout. Een landschap zonder horizon."
+  },
+  {
+    "title": "Kruik",
+    "category": "keramiek",
+    "year": "2025",
+    "image": "https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=800&q=80",
+    "price": "€ 180",
+    "description": "Slanke gedraaide kruik met een enkel oor, gedompeld in een asglazuur."
+  }
+]
