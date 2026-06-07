@@ -27,11 +27,11 @@
     "category": "keramiek",
     "year": "2024",
     "images": [
-      "images/werken/LD-Theepot-octo1.jpeg",
-      "images/werken/LD-Theepot-octo2.jpeg",
-      "images/werken/LD-Theepot-octo3.jpeg"
+      "images/werken/LD-Theepot-octo-1.jpeg",
+      "images/werken/LD-Theepot-octo-2.jpeg",
+      "images/werken/LD-Theepot-octo-3.jpeg"
     ],
     "price": "IN USE",
     "description": "Een omschrijving over de theepot"
-  },
+  }
 ]
