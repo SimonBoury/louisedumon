@@ -52,7 +52,10 @@ Elk werk is een blokje tussen `{ }`. Zo ziet er één uit:
   "title": "Kom Ruw",
   "category": "keramiek",
   "year": "2024",
-  "image": "images/werken/kom-ruw.jpg",
+  "images": [
+    "images/werken/kom-ruw-1.jpg",
+    "images/werken/kom-ruw-2.jpg"
+  ],
   "price": "€ 95",
   "description": "Met de hand opgebouwde kom, dik glazuur dat over de ruwe rand loopt."
 }
@@ -65,9 +68,11 @@ Elk werk is een blokje tussen `{ }`. Zo ziet er één uit:
 | `title` | Titel van het werk | ja |
 | `category` | Exact `keramiek`, `schilderij` of `illustratie` (kleine letters) | ja |
 | `year` | Jaartal | ja |
-| `image` | Pad naar de foto, bv. `images/werken/kom-ruw.jpg` | ja |
+| `images` | **Lijst** met foto's tussen `[ ]`, elk pad tussen `" "` en gescheiden door een komma. De eerste foto is de hoofdfoto in het overzicht; de rest verschijnt als slideshow in de pop-up | ja |
 | `price` | Richtprijs, bv. `€ 95` (mag je weglaten) | nee |
 | `description` | Korte beschrijving in de pop-up (mag je weglaten) | nee |
+
+> **Eén of meerdere foto's?** Bij één foto zet je gewoon één pad in de lijst: `"images": ["images/werken/kom-ruw.jpg"]`. Bij meerdere foto's krijgt de bezoeker pijltjes en stipjes om door de foto's te bladeren. De volgorde in de lijst = de volgorde van de slideshow.
 
 **Een werk toevoegen:** kopieer een bestaand blokje en pas de waarden aan. Zet een **komma** tussen elk blokje, maar **niet** na het laatste:
 
@@ -77,7 +82,7 @@ Elk werk is een blokje tussen `{ }`. Zo ziet er één uit:
     "title": "Werk één",
     "category": "keramiek",
     "year": "2025",
-    "image": "images/werken/werk-een.jpg",
+    "images": ["images/werken/werk-een-1.jpg", "images/werken/werk-een-2.jpg"],
     "price": "€ 150",
     "description": "..."
   },
@@ -85,7 +90,7 @@ Elk werk is een blokje tussen `{ }`. Zo ziet er één uit:
     "title": "Werk twee",
     "category": "schilderij",
     "year": "2025",
-    "image": "images/werken/werk-twee.jpg",
+    "images": ["images/werken/werk-twee.jpg"],
     "price": "€ 300",
     "description": "..."
   }
@@ -140,7 +145,7 @@ In de GitHub web-editor: open de map `images/werken/`, klik **"Add file → Uplo
 
 ## Hoe de aankoop-/interesseflow werkt
 
-Op de site klikt een bezoeker op een werk → er opent een pop-up met de grote foto, de richtprijs en een knop **"Interesse — stuur een mail"**. Die knop opent automatisch een mail naar jouw adres, met de **titel van het werk en de richtprijs al ingevuld** in onderwerp en bericht. Jij hoeft enkel te antwoorden. Direct contact, geen platform of tussenpersoon.
+Op de site klikt een bezoeker op een werk → er opent een pop-up met de foto's (bladeren met pijltjes als er meerdere zijn), de richtprijs en een knop **"Interesse — stuur een mail"**. Die knop opent automatisch een mail naar jouw adres, met de **titel van het werk en de richtprijs al ingevuld** in onderwerp en bericht. Jij hoeft enkel te antwoorden. Direct contact, geen platform of tussenpersoon.
 
 > Wil je later liever een echt contactformulier (zonder dat bezoekers hun mailprogramma openen)? Dat kan met een gratis dienst zoals [Formspree](https://formspree.io) of [Web3Forms](https://web3forms.com). Vraag je ontwikkelaar om dat eenmalig te koppelen.
 

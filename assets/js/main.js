@@ -8,6 +8,8 @@ const CATEGORY_LABELS = {
 
 let allWorks = [];
 let siteEmail = 'louisedumon@icloud.com';
+let currentImages = [];
+let currentSlide = 0;
 
 document.addEventListener('DOMContentLoaded', init);
 
@@ -83,6 +85,7 @@ function renderWorks(filter) {
 
   visible.forEach((work) => {
     const idx = allWorks.indexOf(work);
+    const thumb = getImages(work)[0] || '';
     const card = document.createElement('button');
     card.type = 'button';
     card.className = 'work-card';
@@ -90,7 +93,7 @@ function renderWorks(filter) {
     card.setAttribute('data-title', CATEGORY_LABELS[work.category] || work.category || '');
     card.setAttribute('aria-label', `Bekijk werk: ${work.title}`);
     card.innerHTML = `
-      <img src="${escapeAttr(work.image)}" alt="${escapeAttr(work.title)}" loading="lazy"/>
+      <img src="${escapeAttr(thumb)}" alt="${escapeAttr(work.title)}" loading="lazy"/>
       <div class="card-info">
         <div class="card-name">${escapeHTML(work.title)}</div>
         <div class="card-meta">${escapeHTML(CATEGORY_LABELS[work.category] || '')} · ${escapeHTML(work.year || '')}</div>
@@ -127,7 +130,10 @@ function openLightbox(index) {
   if (!work) return;
   const box = document.getElementById('lightbox');
 
-  setSrc('lbImage', work.image, work.title);
+  currentImages = getImages(work);
+  currentSlide = 0;
+  buildSlideshow(work.title);
+
   setText('lbCat', `${CATEGORY_LABELS[work.category] || work.category || ''} · ${work.year || ''}`);
   setText('lbTitle', work.title);
 
@@ -157,6 +163,47 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
+function getImages(work) {
+  if (Array.isArray(work.images)) return work.images.filter(Boolean);
+  return work.image ? [work.image] : [];
+}
+
+function buildSlideshow(title) {
+  const multiple = currentImages.length > 1;
+  document.getElementById('lbPrev').style.display = multiple ? '' : 'none';
+  document.getElementById('lbNext').style.display = multiple ? '' : 'none';
+
+  const dots = document.getElementById('lbDots');
+  dots.innerHTML = '';
+  if (multiple) {
+    currentImages.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'lb-dot';
+      dot.setAttribute('aria-label', `Foto ${i + 1}`);
+      dot.addEventListener('click', () => showSlide(i));
+      dots.appendChild(dot);
+    });
+  }
+  showSlide(0, title);
+}
+
+function showSlide(i, title) {
+  if (currentImages.length === 0) return;
+  currentSlide = (i + currentImages.length) % currentImages.length;
+  const img = document.getElementById('lbImage');
+  img.src = currentImages[currentSlide];
+  if (title != null) img.dataset.title = title;
+  img.alt = `${img.dataset.title || ''} — foto ${currentSlide + 1} van ${currentImages.length}`;
+
+  const dots = document.querySelectorAll('.lb-dot');
+  dots.forEach((d, idx) => d.classList.toggle('active', idx === currentSlide));
+}
+
+function shiftSlide(step) {
+  showSlide(currentSlide + step);
+}
+
 function buildInterestMailto(work) {
   const subject = `Interesse in "${work.title}"`;
   const priceLine = work.price ? ` (richtprijs ${work.price})` : '';
@@ -172,11 +219,16 @@ function setupLightboxDismiss() {
   const box = document.getElementById('lightbox');
   if (!box) return;
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => shiftSlide(-1));
+  document.getElementById('lbNext').addEventListener('click', () => shiftSlide(1));
   box.addEventListener('click', (e) => {
     if (e.target === box) closeLightbox();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && box.classList.contains('open')) closeLightbox();
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') shiftSlide(-1);
+    else if (e.key === 'ArrowRight') shiftSlide(1);
   });
 }
 
@@ -185,14 +237,6 @@ function setupLightboxDismiss() {
 function setText(id, value) {
   const el = document.getElementById(id);
   if (el && value != null) el.textContent = value;
-}
-
-function setSrc(id, src, alt) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.src = src || '';
-    el.alt = alt || '';
-  }
 }
 
 function escapeHTML(str) {
